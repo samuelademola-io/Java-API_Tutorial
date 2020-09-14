@@ -1,4 +1,4 @@
-package com.ademolasamuel;
+package com.easynotes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
