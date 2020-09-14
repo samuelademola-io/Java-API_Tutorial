@@ -26,26 +26,27 @@ public class NoteService {
     }
 
     // Get Note by ID
-    public Note getNote(Long id) { return noteRepository.findById(id)
+    public Note findNote (Long id) { return noteRepository.findById(id)
             .orElseThrow(()-> new ResourceNotFoundException("Note", "id", id));
     }
 
     // Get All Notes
-    public List<Note> getAllNotes() {
+    public List<Note> findNotes() {
         return noteRepository.findAll();
     }
 
     // Update Note by Id
-    public Note updateNote(Note note) {
-        Note noteChange = noteRepository.findById(note.getId())
-                .orElseThrow(()-> new ResourceNotFoundException("Note", "id", note));
+    public Note updateNote(Long id, Note noteDetails ) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Note", "id", id));
+        note.setTitle(noteDetails.getTitle());
+        note.setContent(noteDetails.getContent());
 
-        noteChange.setTitle((note.getTitle()));
-        noteChange.setContent(note.getContent());
-        return noteRepository.save(noteChange);
+        Note changedNote = noteRepository.save(note);
+        return changedNote;
     }
 
-    public ResponseEntity<?> deleteNote(Long id) {
+    public ResponseEntity<?> removeNote(Long id) {
         Note note = noteRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Note", "id", id));
         noteRepository.delete(note);
