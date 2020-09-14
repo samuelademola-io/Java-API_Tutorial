@@ -1,4 +1,4 @@
-package com.ademolasamuel.model;
+package com.easynotes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
